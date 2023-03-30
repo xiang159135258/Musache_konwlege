@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+
+    <div id="container"></div>
+
+    <!-- 模板 -->
+    <!-- type=" ": 里面只要不为text/javascript 就不会被执行，只被当作模板-->
+    <script type="text/temp" id="mytemplate">
+        <ul>
+            {{#arr}}
+                <li>
+                    <div class="hd">{{name}} </div>
+                    <div class="bd">
+                        <p>姓名：{{name}} </p>
+                        <p>年龄：{{age}} </p>
+                        <p>性别：{{sex}} </p>
+                    </div>
+                </li>
+            {{/arr}}
+        </ul>
+    </script>
+
+    <script type="module">
+        import Mustache from './jslib/mustache.js'
+        var templateStr = `
+            <ul>
+                {{#arr}}
+                    <li>
+                        <div class="hd">{{name}} </div>
+                        <div class="bd">
+                            <p>姓名：{{name}} </p>
+                            <p>年龄：{{age}} </p>
+                            <p>性别：{{sex}} </p>
+                        </div>
+                    </li>
+                {{/arr}}
+            </ul>
+            `;
+
+        var data = {
+            arr: [
+                {"name":"小明", "age":12, "sex":"男"},
+                {"name":"小红", "age":14, "sex":"女"},
+                {"name":"小刚", "age":13, "sex":"男"}
+            ]
+        };
+        var domStr = Mustache.render(templateStr, data);
+        var container = document.getElementById('container');
+        container.innerHTML = domStr;
+
+        var temp = document.getElementById('mytemplate').innerHTML;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var template = '<h1>我买了一个{{thing}}, 好 {{mod}} 啊</h1>';
+
+        var data = {
+            thing : 'baicai',
+            mod : 'happy'
+        };
+
+        function render(template) { 
+            return template.replace(/\{\{(\w+)\}\}/g, function (findStr, $1) {  
+                return data[$1];
+            })
+        }
+
+        var result = render(template, data);
+        console.log(result);
+    </script>
+</body>
+</html>
